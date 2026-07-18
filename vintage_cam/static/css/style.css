@@ -1,0 +1,489 @@
+:root {
+    --bg-color: #F5F5F7;
+    /* Apple off-white background */
+    --card-bg: #FFFFFF;
+    --text-primary: #1D1D1F;
+    /* Apple dark grey for text */
+    --text-secondary: #86868B;
+    --accent: #0071E3;
+    /* Apple system blue */
+    --accent-hover: #005BB5;
+    --error: #FF3B30;
+    --border-radius-main: 18px;
+    --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* Crisp text rendering */
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 3rem 1.5rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    /* Tighter letter spacing like Apple headings */
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.upload-section {
+    background-color: var(--card-bg);
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.upload-section:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+/* --- Filter Cards --- */
+.filter-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.filter-option {
+    cursor: pointer;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 16px;
+    text-align: center;
+    width: 130px;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.filter-option:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.filter-option.active {
+    border-color: var(--accent);
+    box-shadow: 0 6px 16px rgba(0, 113, 227, 0.2);
+    transform: translateY(-3px);
+}
+
+/* --- Filter Previews with CSS Grain & Vignette --- */
+.filter-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    /* Square */
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+/* Base64 SVG Noise for Film Grain effect */
+.filter-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC43Ii8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjE1Ii8+PC9zdmc+');
+    z-index: 10;
+}
+
+.preview-f1 {
+    /* Warm, glowing vintage look */
+    background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+    /* Placeholder before overwriting */
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    box-shadow: inset 0 0 15px rgba(255, 100, 0, 0.1);
+}
+
+.preview-f2 {
+    /* Moody Dark with deep vignette */
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    /* Inner shadow for the dark vignette */
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.85);
+}
+
+.preview-f3 {
+    /* Fuji Chrome: Deep greens, rich contrast, slight teal shadows */
+    background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+    /* Strong inner contrast like the S-curve */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.preview-f4 {
+    /* Cinestill Night: Deep teal shadows, burning orange highlights */
+    background: linear-gradient(135deg, #0f2027 0%, #1a3a3a 40%, #c0612a 100%);
+    /* Halation glow: warm orange inner glow in the corner */
+    box-shadow: inset -8px -8px 30px rgba(220, 80, 10, 0.55),
+                inset 0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.preview-f5 {
+    /* Party Flash: Harsh white center, stark black edges */
+    background: radial-gradient(circle at center, #ffffff 0%, #d4e1f9 40%, #000000 90%);
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.95);
+}
+
+/* --- Film Simulation Recipe Section --- */
+.preset-label {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.preset-label::before,
+.preset-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 28%;
+    height: 1px;
+    background: #e0e0e5;
+}
+.preset-label::before { right: calc(50% + 6rem); }
+.preset-label::after  { left:  calc(50% + 6rem); }
+
+.preset-option {
+    width: 110px;
+}
+
+.preview-portra {
+    /* Kodak Portra 400: warmes, cremiges Hautton-Gold */
+    background: linear-gradient(135deg, #f5e6d0 0%, #e8b88a 50%, #c97b45 100%);
+    box-shadow: inset 0 0 18px rgba(180, 80, 20, 0.2);
+}
+
+.preview-cinestill {
+    /* Cinestill 800T: kühles Nachtblau mit orangem Halation */
+    background: linear-gradient(135deg, #1a2a4a 0%, #2a3a5a 50%, #8b3a1a 100%);
+    box-shadow: inset -6px -6px 24px rgba(200, 70, 10, 0.6),
+                inset 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.preview-hp5 {
+    /* Ilford HP5: klassisches S/W mit starkem Kontrast */
+    background: linear-gradient(135deg, #1a1a1a 0%, #6a6a6a 50%, #e8e8e8 100%);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.preview-golddust {
+    background: linear-gradient(135deg, #1a3040 0%, #2a5060 40%, #c8a028 100%);
+    box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.5),
+                inset 4px 4px 16px rgba(200, 160, 20, 0.25);
+}
+
+.preview-nostalgic {
+    /* Nostalgic Neg: warmes Amber, sattes Rot */
+    background: linear-gradient(135deg, #c97a3a 0%, #e8a060 50%, #f5c890 100%);
+    box-shadow: inset 0 0 16px rgba(160, 60, 0, 0.3);
+}
+
+.preview-eterna {
+    /* Eterna Bleach Bypass: desaturiertes Silber mit hartem Kontrast */
+    background: linear-gradient(135deg, #2a2a2a 0%, #787878 50%, #d0d0d0 100%);
+    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.5);
+}
+
+.preview-classicneg {
+    /* Classic Negative: Magenta-Schatten, Cyan-Blautöne */
+    background: linear-gradient(135deg, #6a2050 0%, #2a5060 50%, #80c0b0 100%);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.45);
+}
+
+.filter-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+/* --- Intensity Slider --- */
+.intensity-section {
+    max-width: 480px;
+    margin: 0 auto 2.2rem auto;
+    padding: 1.2rem 1.5rem;
+    background: #F5F5F7;
+    border-radius: 16px;
+}
+
+.intensity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.intensity-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.intensity-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 3rem;
+    text-align: right;
+}
+
+.intensity-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(
+        to right,
+        var(--accent) 0%,
+        var(--accent) var(--val, 100%),
+        #D1D1D6 var(--val, 100%),
+        #D1D1D6 100%
+    );
+    outline: none;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.intensity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--accent);
+    box-shadow: 0 2px 8px rgba(0, 113, 227, 0.25);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.intensity-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+}
+
+/* --- Buttons --- */
+.upload-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #F5F5F7;
+    color: var(--accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    /* Pill shape */
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.1s ease;
+    border: none;
+    margin-right: 1rem;
+}
+
+.upload-btn:hover {
+    background-color: #EAEAEA;
+}
+
+button {
+    background-color: var(--accent);
+    color: #FFFFFF;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+button:disabled {
+    background-color: #D1D1D6;
+    color: #FFFFFF;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+/* --- Results Section --- */
+.results-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    animation: fadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.image-wrapper {
+    flex: 1;
+    min-width: 320px;
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.image-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.image-wrapper h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+/* --- Blend Wrapper (live intensity preview) --- */
+.blend-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    line-height: 0;   /* kein Whitespace unter inline img */
+}
+
+.blend-wrapper #blendBaseImg {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;  /* wrapper übernimmt border-radius */
+}
+
+.blend-wrapper #processedImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    transition: opacity 0.05s linear;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Loading Spinner --- */
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid rgba(0, 113, 227, 0.1);
+    border-left-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    margin: 1.5rem auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#loading {
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.error {
+    color: var(--error);
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(255, 59, 48, 0.08);
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.download-btn {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+.download-btn:hover {
+    background: #0062e3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 122, 255, 0.3);
+}

@@ -1,0 +1,33 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Python virtual environment
+venv/
+.venv/
+ENV/
+env/
+python/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# App uploads and processed images
+vintage_cam/uploads/*
+vintage_cam/processed/*
+!vintage_cam/uploads/.gitkeep
+!vintage_cam/processed/.gitkeep
+
+# Exclude large binary utilities and log files
+vintage_cam/ngrok
+vintage_cam/ngrok-*.zip
+vintage_cam/cloudflared
+vintage_cam/*.log
+vintage_cam/test.jpg

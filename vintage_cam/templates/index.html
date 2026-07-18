@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Cam by Enes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Logo Top Left -->
+    <div style="position: absolute; top: 1.2rem; left: 1.5rem;">
+        <img src="/static/images/logo.png" alt="Vintage Cam Logo"
+            style="height: 48px; width: 48px; object-fit: contain;">
+    </div>
+
+    <!-- Language Toggle Top Right -->
+    <div style="position: absolute; top: 1.5rem; right: 1.5rem;">
+        <select id="languageToggle"
+            style="padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid #d1d1d6; background: #fff; font-family: inherit; font-size: 0.9rem; font-weight: 500; color: var(--text-primary); cursor: pointer; outline: none; box-shadow: var(--shadow-soft);">
+            <option value="de">DE 🇩🇪</option>
+            <option value="en">EN 🇬🇧</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 data-i18n="title">Vintage Cam by Enes</h1>
+            <p data-i18n="subtitle">Verleihe deinen digitalen Bildern den authentischen Look analogen Films.</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <form id="uploadForm">
+                    <div class="filter-selection"
+                        style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 2.5rem;">
+                        <label class="filter-option active">
+                            <input type="radio" name="filter" value="filter1" checked style="display: none;">
+                            <div class="filter-preview preview-f1"></div>
+                            <div class="filter-name" data-i18n="filter1">Vintage Warm</div>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="filter" value="filter2" style="display: none;">
+                            <div class="filter-preview preview-f2"></div>
+                            <div class="filter-name" data-i18n="filter2">Moody Dark</div>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="filter" value="filter3" style="display: none;">
+                            <div class="filter-preview preview-f3"></div>
+                            <div class="filter-name" data-i18n="filter3">Fuji Chrome</div>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="filter" value="filter4" style="display: none;">
+                            <div class="filter-preview preview-f4"></div>
+                            <div class="filter-name" data-i18n="filter4">Cinestill Night</div>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="filter" value="filter5" style="display: none;">
+                            <div class="filter-preview preview-f5" style="background: linear-gradient(135deg, #fff 0%, #000 100%);"></div>
+                            <div class="filter-name" data-i18n="filter5">Party Flash</div>
+                        </label>
+                    </div>
+
+                    <!-- Film Simulation Presets -->
+                    <div class="preset-label" data-i18n="presetLabel">Film Simulation Recipes</div>
+                    <div class="filter-selection" style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap;">
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="portra400" style="display: none;">
+                            <div class="filter-preview preview-portra"></div>
+                            <div class="filter-name" data-i18n="portra400">Kodak Portra 400</div>
+                        </label>
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="cinestill800t" style="display: none;">
+                            <div class="filter-preview preview-cinestill"></div>
+                            <div class="filter-name" data-i18n="cinestill800t">Cinestill 800T</div>
+                        </label>
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="hp5" style="display: none;">
+                            <div class="filter-preview preview-hp5"></div>
+                            <div class="filter-name" data-i18n="hp5">Ilford HP5</div>
+                        </label>
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="golddust" style="display: none;">
+                            <div class="filter-preview preview-golddust"></div>
+                            <div class="filter-name" data-i18n="golddust">Gold Dust</div>
+                        </label>
+                    </div>
+
+                    <!-- Fuji Originals -->
+                    <div class="preset-label" data-i18n="fujiLabel">Fuji Originals</div>
+                    <div class="filter-selection" style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 2.5rem; flex-wrap: wrap;">
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="nostalgic_neg" style="display: none;">
+                            <div class="filter-preview preview-nostalgic"></div>
+                            <div class="filter-name" data-i18n="nostalgic_neg">Nostalgic Neg</div>
+                        </label>
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="eterna_bb" style="display: none;">
+                            <div class="filter-preview preview-eterna"></div>
+                            <div class="filter-name" data-i18n="eterna_bb">Eterna Bypass</div>
+                        </label>
+                        <label class="filter-option preset-option">
+                            <input type="radio" name="filter" value="classic_neg" style="display: none;">
+                            <div class="filter-preview preview-classicneg"></div>
+                            <div class="filter-name" data-i18n="classic_neg">Classic Neg</div>
+                        </label>
+                    </div>
+
+                    <!-- Intensity Slider -->
+                    <div class="intensity-section">
+                        <div class="intensity-header">
+                            <span class="intensity-label" data-i18n="intensityLabel">Filter Intensität</span>
+                            <span class="intensity-value" id="intensityValue">100%</span>
+                        </div>
+                        <input type="range" id="intensitySlider" min="0" max="100" value="100"
+                            class="intensity-slider">
+                    </div>
+
+                    <label for="imageInput" class="upload-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span data-i18n="selectBtn">Bild auswählen</span>
+                    </label>
+                    <input type="file" id="imageInput" name="image"
+                        accept="image/jpeg, image/png, image/webp, image/x-adobe-dng, image/x-canon-cr2, image/x-nikon-nef, .dng, .cr2, .nef, .arw"
+                        hidden>
+                    <button type="submit" id="processBtn" disabled data-i18n="processBtn">Film Entwickeln</button>
+                    <div id="file-name-display"
+                        style="margin-top: 10px; color: var(--text-secondary); font-size: 0.9em;"></div>
+                </form>
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p data-i18n="loading">Entwickle Filmstreifen...</p>
+                </div>
+            </div>
+
+            <div class="results-section hidden" id="resultsSection">
+                <div class="image-wrapper">
+                    <h3 data-i18n="original">Original</h3>
+                    <img id="originalImg" src="" alt="Original">
+                </div>
+                <div class="image-wrapper">
+                    <h3 data-i18n="processed">Entwickelt (Analog-Look)</h3>
+                    <div class="blend-wrapper">
+                        <!-- Original als Basis-Ebene (live sichtbar durch Opacity) -->
+                        <img id="blendBaseImg" src="" alt="Base">
+                        <!-- Gefiltertes Bild als Overlay (Opacity = Slider-Wert) -->
+                        <img id="processedImg" src="" alt="Processed" style="opacity: 1;">
+                    </div>
+                    <a id="downloadBtn" href="#" download="vintage_cam_photo.jpg" class="download-btn"
+                        data-i18n="downloadBtn" style="margin-top: 15px; display: inline-block;">Bild herunterladen</a>
+                </div>
+            </div>
+            <div id="errorMsg" class="error hidden" data-i18n="error">Ein Fehler ist aufgetreten.</div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
